@@ -1,0 +1,36 @@
+proxies:
+- name: "Bislal · custom-vless-25111"
+  type: vless
+  server: '136.148.217.119'
+  port: 25111
+  uuid: '3fbac079-f05d-43cb-92d4-9d53dee72d7a'
+  udp: true
+  tls: true
+  servername: 'dl.google.com'
+  skip-cert-verify: false
+  client-fingerprint: 'firefox'
+  network: 'tcp'
+  reality-opts:
+    public-key: 'iCjPvvYiHE_6XRg1r66uEZIamL9I4_Ayo3tqPO70gh8'
+    short-id: 'efdec3a684d3fce1'
+
+proxy-groups:
+- name: PROXY
+  type: select
+  url: http://cp.cloudflare.com/generate_204
+  expected-status: 204
+  interval: 300
+  icon: https://i.imgur.com/B3HrpPC.png
+  proxies:
+    - auto
+    - "Bislal · custom-vless-25111"
+
+- name: auto
+  proxies:
+    - "Bislal · custom-vless-25111"
+  type: url-test
+  url: http://cp.cloudflare.com/generate_204
+  expected-status: 204
+  interval: 300
+  tolerance: 150
+  lazy: true
